@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --c-indigo: #4E56C0;
+  --c-violet: #9B5DE0;
+  --c-lavender: #D78FEE;
+  --c-blush: #FDCFFA;
+
+  --c-bg: #08090f;
+  --c-bg-2: #0d0f1a;
+  --c-bg-3: #111428;
+  --c-surface: rgba(255,255,255,0.04);
+  --c-surface-hover: rgba(255,255,255,0.07);
+  --c-border: rgba(255,255,255,0.08);
+  --c-border-glow: rgba(155,93,224,0.4);
+
+  --c-text: #f0eeff;
+  --c-text-muted: rgba(240,238,255,0.5);
+  --c-text-dim: rgba(240,238,255,0.25);
+
+  --gradient-main: linear-gradient(135deg, var(--c-indigo), var(--c-violet), var(--c-lavender));
+  --gradient-glow: linear-gradient(135deg, var(--c-indigo) 0%, var(--c-violet) 50%, var(--c-blush) 100%);
+  --gradient-text: linear-gradient(135deg, #a78bfa, #d78fee, #fdcffa);
+
+  --shadow-glow: 0 0 40px rgba(155,93,224,0.25);
+  --shadow-card: 0 20px 60px rgba(0,0,0,0.5);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --navbar-h: 72px;
+}
+
+/* ── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-h);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--c-bg);
+  color: var(--c-text);
+  overflow-x: hidden;
+  line-height: 1.6;
+  cursor: none;
+}
+
+/* ── Custom Cursor ──────────────────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: var(--c-lavender);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(215,143,238,0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+.cursor-ring.hover {
+  width: 56px; height: 56px;
+  border-color: var(--c-lavender);
+  background: rgba(215,143,238,0.07);
+}
+
+/* ── Noise Overlay ──────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Section Defaults ───────────────────────────────────────── */
+section {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Gradient Text Utility ──────────────────────────────────── */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--c-bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--c-violet);
+  border-radius: 4px;
+}
+
+/* ── Glass Card ─────────────────────────────────────────────── */
+.glass {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Button Base ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.03em;
+  cursor: none;
+  border: none;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--gradient-main);
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(155,93,224,0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(155,93,224,0.5);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+}
+.btn-ghost:hover {
+  border-color: var(--c-violet);
+  background: rgba(155,93,224,0.08);
+}
+
+/* ── Section Title ──────────────────────────────────────────── */
+.section-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-violet);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  color: var(--c-text-muted);
+  font-size: 1.05rem;
+  max-width: 520px;
+}

@@ -1,0 +1,121 @@
+.skills {
+  padding: 120px clamp(24px, 5vw, 80px);
+  background: var(--c-bg-2);
+  position: relative;
+}
+
+.skills::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(78,86,192,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.skills-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.skills-header .section-subtitle {
+  margin: 0 auto;
+}
+
+/* Grid of categories */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.skills-category {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.skills-category::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient-main);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.skills-category:hover {
+  border-color: var(--c-border-glow);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.skills-category:hover::before {
+  opacity: 1;
+}
+
+.skills-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.skills-cat-icon {
+  font-size: 1.6rem;
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-sm);
+}
+
+.skills-cat-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--c-text);
+  letter-spacing: 0.02em;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  color: var(--c-text-muted);
+  transition: all 0.2s;
+}
+
+.skill-tag:hover {
+  background: rgba(155,93,224,0.15);
+  border-color: rgba(155,93,224,0.4);
+  color: var(--c-lavender);
+  transform: scale(1.04);
+}
+
+.skill-tag-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
