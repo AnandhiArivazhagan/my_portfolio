@@ -187,3 +187,28 @@ section {
   font-size: 1.05rem;
   max-width: 520px;
 }
+
+/* ── Mobile: hide custom cursor on touch devices ── */
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+  .btn { cursor: pointer; }
+}
+
+/* ── Mobile base adjustments ── */
+@media (max-width: 480px) {
+  :root { --navbar-h: 64px; }
+
+  .section-title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 11px 22px;
+    font-size: 0.82rem;
+  }
+}

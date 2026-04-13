@@ -90,21 +90,22 @@
 }
 
 .about-avatar {
-  width: 180px; height: 180px;
+  width: 200px; height: 200px;
   border-radius: 50%;
   background: var(--gradient-main);
   margin-bottom: 20px;
   box-shadow: 0 8px 32px rgba(155,93,224,0.4);
   overflow: hidden;        /* ← add this */
-  border: 3px solid var(--c-border-glow); 
-  flex-shrink: 0; /* ← optional glowing border */
+  border: 2px solid var(--c-border-glow);  /* ← optional glowing border */
 }
 
 .about-avatar img {
-  width: 100px;
-  height: fit-content;
-  object-fit:auto;       /* fills the circle cleanly */
-/* object-position: center top;  */}
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* fills the circle cleanly */
+  object-position: center top;  /* adjust if face gets cut off */
+}
+
 .about-card-name {
   font-family: var(--font-display);
   font-size: 1.3rem;
@@ -187,5 +188,84 @@
   .about-inner {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-visual {
+    order: -1; /* show photo card above text on tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 80px 24px;
+  }
+
+  .about-card-main {
+    padding: 28px 24px;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .about-stat-num {
+    font-size: 1.3rem;
+  }
+
+  .about-highlight-item {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 72px 20px;
+  }
+
+  .about-avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .about-card-name {
+    font-size: 1.1rem;
+  }
+
+  .about-stats {
+    gap: 8px;
+  }
+
+  .about-stat {
+    padding: 12px 8px;
+  }
+
+  .about-stat-num {
+    font-size: 1.2rem;
+  }
+
+  .about-stat-label {
+    font-size: 0.65rem;
+  }
+
+  .about-edu-card {
+    padding: 16px 18px;
+    gap: 12px;
+  }
+
+  .about-edu-icon {
+    font-size: 1.6rem;
+  }
+
+  .about-edu-title {
+    font-size: 0.85rem;
   }
 }
