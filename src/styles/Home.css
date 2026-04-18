@@ -68,6 +68,7 @@
   z-index: 2;
   max-width: 860px;
   text-align: center;
+  overflow: visible;
 }
 
 .home-badge {
@@ -98,18 +99,22 @@
   50%       { opacity: 0.5; transform: scale(0.8); }
 }
 
+/* ── Name ────────────────────────────────────────────────────── */
 .home-name {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 8vw, 4.5rem);
+  font-size: clamp(3rem, 7vw, 4.5rem);
   font-weight: 800;
   letter-spacing: -0.035em;
-  line-height: 1;
+  line-height: 1.15;
   margin-bottom: 16px;
 }
 
 .home-name .line-1 {
   display: block;
   color: var(--c-text);
+  word-break: keep-all;
+  overflow-wrap: normal;
+  white-space: nowrap;
 }
 
 .home-name .line-2 {
@@ -120,6 +125,9 @@
   background-clip: text;
   background-size: 200% auto;
   animation: gradient-shift 4s linear infinite;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  white-space: nowrap;
 }
 
 @keyframes gradient-shift {
@@ -127,6 +135,7 @@
   100% { background-position: 200% center; }
 }
 
+/* ── Role / Typed Text ───────────────────────────────────────── */
 .home-role {
   font-family: var(--font-display);
   font-size: clamp(1rem, 2.5vw, 1.35rem);
@@ -150,6 +159,7 @@
   50% { opacity: 0; }
 }
 
+/* ── Description ─────────────────────────────────────────────── */
 .home-desc {
   font-size: 1.05rem;
   color: var(--c-text-muted);
@@ -158,6 +168,7 @@
   line-height: 1.75;
 }
 
+/* ── CTA Buttons ─────────────────────────────────────────────── */
 .home-actions {
   display: flex;
   align-items: center;
@@ -224,7 +235,7 @@
   100% { opacity: 0; transform: translateY(-120px) scale(0); }
 }
 
-/* ── Responsive ─────────────────────────────────────────────── */
+/* ── Responsive: 768px ───────────────────────────────────────── */
 @media (max-width: 768px) {
   .home {
     padding: var(--navbar-h) 24px 100px;
@@ -235,10 +246,21 @@
   .home-content {
     text-align: center;
     width: 100%;
+    max-width: 100%;
+    padding: 0 8px;
   }
 
   .home-name {
-    font-size: clamp(2.2rem, 11vw, 3.5rem);
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    letter-spacing: -0.025em;
+  }
+
+  /* Allow wrapping on tablet — but never mid-word */
+  .home-name .line-1,
+  .home-name .line-2 {
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
 
   .home-role {
@@ -268,10 +290,20 @@
   .home-orb-3 { display: none; }
 }
 
+/* ── Responsive: 480px ───────────────────────────────────────── */
 @media (max-width: 480px) {
   .home-name {
-    font-size: clamp(2rem, 13vw, 2.8rem);
-    letter-spacing: -0.03em;
+    /* Scale down enough so even long last names fit on 1–2 clean lines */
+    font-size: clamp(1.5rem, 8.5vw, 2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .home-name .line-1,
+  .home-name .line-2 {
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
 
   .home-badge {
